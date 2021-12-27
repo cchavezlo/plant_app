@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
 import 'https.dart';
+import 'photo.dart';
 import 'httpEnfermedades.dart';
 import 'image_and_icons.dart';
 import 'title_and_price.dart';
@@ -58,6 +59,19 @@ class Body extends StatelessWidget {
                     );
                   },
                   child: Text("Historial Enfermedades"),
+                ),
+              ),
+              Expanded(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LineChart(),
+                      ),
+                    );
+                  },
+                  child: Text("Consultar"),
                 ),
               ),
             ],
