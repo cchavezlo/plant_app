@@ -1,5 +1,7 @@
 import 'dart:convert';
-
+//import 'dart:html';
+import 'package:image_downloader/image_downloader.dart';
+import 'package:flutter_image/flutter_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -14,7 +16,7 @@ class _ApiState extends State<ApiE> {
 
   void fetchImage() async {
     if (counter == 0) {
-      counter = 1;
+      counter = 0;
     }
     counter++;
     var response = await get(Uri.parse(
@@ -62,6 +64,13 @@ class ImageList extends StatelessWidget {
   final List<ImageModel> images;
 
   ImageList(this.images);
+  fetchImage_(String url_) async {
+    var imageId = await ImageDownloader.downloadImage(url_);
+    // Below is a method of obtaining saved image information.
+    String fileName = await ImageDownloader.findName(imageId);
+    String path = await ImageDownloader.findPath(imageId);
+    return path;
+  }
 
   Widget build(context) {
     return ListView.builder(
@@ -74,6 +83,18 @@ class ImageList extends StatelessWidget {
 }
 
 Widget buildImage(ImageModel image) {
+  fetchImage_(String url_) async {
+    var imageId = await ImageDownloader.downloadImage(url_);
+    // Below is a method of obtaining saved image information.
+    String fileName = await ImageDownloader.findName(imageId);
+    final String path = await ImageDownloader.findPath(imageId);
+    return path;
+  }
+
+  // String path_ = fetchImage_(image.url).toString();
+  var avatar = new Image(
+    image: new NetworkImageWithRetry(image.url),
+  );
   return Container(
     decoration: BoxDecoration(
       border: Border.all(
@@ -86,7 +107,11 @@ Widget buildImage(ImageModel image) {
       children: [
         Padding(
           padding: EdgeInsets.only(bottom: 12.0),
-          child: Image.network(image.url, fit: BoxFit.cover),
+          //child:  Image.network(image.url, fit: BoxFit.cover),
+          //child: ImageList.fet(),
+          child: Image.asset("images/bottom_img_1.jpeg"),
+          //child: Image.file(File(path_), ),
+          //child: avatar,
         ),
         Text(image.title),
       ],
