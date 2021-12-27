@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
-
+import 'https.dart';
 import 'image_and_icons.dart';
 import 'title_and_price.dart';
 
@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
           TitleAndPrice(
               title: "Tipo de Planta: Huarango",
               country: "Peru-Arequipa",
-              price: 10),
+              price: 9),
           SizedBox(height: kDefaultPadding),
           Row(
             children: <Widget>[
@@ -29,7 +29,14 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   color: kPrimaryColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Api(),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Detalle",
                     style: TextStyle(
