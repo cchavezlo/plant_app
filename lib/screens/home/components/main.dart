@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'https.dart';
+import '../../details/components/https.dart';
 
 void main() {
   runApp(MyApp());

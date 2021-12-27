@@ -18,7 +18,7 @@ class RecomendsPlants extends StatelessWidget {
             image: "assets/images/image_1.png",
             title: "Samantha",
             country: "Russia",
-            price: 440,
+            price: 12,
             press: () {
               Navigator.push(
                 context,
@@ -32,7 +32,7 @@ class RecomendsPlants extends StatelessWidget {
             image: "assets/images/image_2.png",
             title: "Angelica",
             country: "Russia",
-            price: 440,
+            price: 9,
             press: () {
               Navigator.push(
                 context,
@@ -46,7 +46,7 @@ class RecomendsPlants extends StatelessWidget {
             image: "assets/images/image_3.png",
             title: "Samantha",
             country: "Russia",
-            price: 440,
+            price: 15,
             press: () {},
           ),
         ],
@@ -119,7 +119,7 @@ class RecomendPlantCard extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    '\$$price',
+                    '\S./ $price',
                     style: Theme.of(context)
                         .textTheme
                         .button
