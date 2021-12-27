@@ -40,14 +40,6 @@ class TitleAndPrice extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
-          Text(
-            "\S/. $price",
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(color: kPrimaryColor),
-          )
         ],
       ),
     );

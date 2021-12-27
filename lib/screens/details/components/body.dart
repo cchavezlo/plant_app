@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
 import 'https.dart';
+import 'httpEnfermedades.dart';
 import 'image_and_icons.dart';
 import 'title_and_price.dart';
 
@@ -13,8 +14,8 @@ class Body extends StatelessWidget {
         children: <Widget>[
           ImageAndIcons(size: size),
           TitleAndPrice(
-              title: "Tipo de Planta: Huarango",
-              country: "Peru-Arequipa",
+              title: "Tipo: Bougainvillea Spectabilis",
+              country: "Origen: Brasil",
               price: 9),
           SizedBox(height: kDefaultPadding),
           Row(
@@ -38,7 +39,7 @@ class Body extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "Detalle",
+                    "Datos de Sensores",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -48,8 +49,15 @@ class Body extends StatelessWidget {
               ),
               Expanded(
                 child: FlatButton(
-                  onPressed: () {},
-                  child: Text("Compre Aqui!"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ApiE(),
+                      ),
+                    );
+                  },
+                  child: Text("Historial Enfermedades"),
                 ),
               ),
             ],

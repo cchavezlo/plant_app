@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,54 +32,58 @@ class _ApiState extends State<Api> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            child: FutureBuilder(
-                future: getplant(),
-                builder: (context, snapshot) {
-                  if (snapshot.data == null) {
-                    return Container(child: Text("No Data"));
-                  } else
-                    return ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, i) {
-                          DateTime fechaSet =
-                              DateTime.parse(snapshot.data[i].c);
-                          String fecha = fechaSet.day.toString() +
-                              '/' +
-                              fechaSet.month.toString() +
-                              '/' +
-                              fechaSet.year.toString();
-                          String hora = fechaSet.hour.toString() +
-                              ':' +
-                              fechaSet.minute.toString() +
-                              ':' +
-                              fechaSet.second.toString();
-                          if (snapshot.data[i].a == 'TEMPERATURE') {
-                            return ListTile(
-                              title: Text("Topico: " + snapshot.data[i].a),
-                              subtitle: Text("Valor: " +
-                                  snapshot.data[i].b +
-                                  " °C"
-                                      '\n'
-                                      "Fecha: " +
-                                  fecha +
-                                  '\n' "Hora: " +
-                                  hora),
-                            );
-                          } else {
-                            return ListTile(
-                              title: Text("Topico: " + snapshot.data[i].a),
-                              subtitle: Text("Valor: " +
-                                  snapshot.data[i].b +
-                                  '\n'
-                                      "Fecha: " +
-                                  fecha +
-                                  '\n' "Hora: " +
-                                  hora),
-                            );
-                          }
-                        });
-                })));
+      body: Container(
+          child: FutureBuilder(
+              future: getplant(),
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Container(child: Text("No Data"));
+                } else
+                  return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, i) {
+                        DateTime fechaSet = DateTime.parse(snapshot.data[i].c);
+                        String fecha = fechaSet.day.toString() +
+                            '/' +
+                            fechaSet.month.toString() +
+                            '/' +
+                            fechaSet.year.toString();
+                        String hora = fechaSet.hour.toString() +
+                            ':' +
+                            fechaSet.minute.toString() +
+                            ':' +
+                            fechaSet.second.toString();
+                        if (snapshot.data[i].a == 'Temp') {
+                          return ListTile(
+                            title: Text("Topico: Temperatura"),
+                            subtitle: Text("Valor: " +
+                                snapshot.data[i].b +
+                                " °C"
+                                    '\n'
+                                    "Fecha: " +
+                                fecha +
+                                '\n' "Hora: " +
+                                hora),
+                          );
+                        } else {
+                          return ListTile(
+                            title: Text("Topico: " + snapshot.data[i].a),
+                            subtitle: Text("Valor: " +
+                                snapshot.data[i].b +
+                                " %"
+                                    '\n'
+                                    "Fecha: " +
+                                fecha +
+                                '\n' "Hora: " +
+                                hora),
+                          );
+                        }
+                      });
+              })),
+      appBar: AppBar(
+        title: Text('Datos Sensores'),
+      ),
+    );
   }
 }
 
